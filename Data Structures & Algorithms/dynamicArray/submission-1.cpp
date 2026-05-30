@@ -1,0 +1,49 @@
+class DynamicArray {
+public:
+    int cap;
+    int size = 0;
+    int *arr;
+    DynamicArray(int capacity) {
+        cap = capacity;
+        arr = new int[cap];
+    }
+
+    int get(int i) {
+        return arr[i];
+    }
+
+    void set(int i, int n) {
+        arr[i] = n;
+    }
+
+    void pushback(int n) {
+        if (size == cap) {
+            resize();
+        }
+        arr[size] = n;
+        size++;
+    }
+
+    int popback() {
+        if (size > 0) size--;
+        return arr[size];
+    }
+
+    void resize() {
+        cap *= 2;
+        int *newArr = new int[cap];
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[i];
+        }
+        delete[] arr;
+        arr = newArr;
+    }
+
+    int getSize() {
+        return size;
+    }
+
+    int getCapacity() {
+        return cap;
+    }
+};
